@@ -37,7 +37,7 @@ import { KnexModule } from './modules/common/knex/knex.module';
     KnexModule.forRoot({
       client: 'mysql',
       connection: {
-        host: '122.51.138.67',
+        host: '127.0.0.1',
         user: 'blog',
         password: '123456',
         database: 'blog',
