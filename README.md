@@ -22,9 +22,52 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Overview
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+app.module.ts
+
+```javascript
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { KnexModule } from './modules/common/knex/knex.module';
+
+@Module({
+  imports: [
+    KnexModule.forRoot({
+      client: 'mysql',
+      connection: {
+        host: '122.51.138.67',
+        user: 'blog',
+        password: '123456',
+        database: 'blog',
+      },
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+app.serverce.ts
+
+```javascript
+import { Injectable, Inject } from '@nestjs/common';
+import { Knex } from 'knex';
+import { KNEX_CONNECTION } from './modules/common/knex/constants';
+
+@Injectable()
+export class AppService {
+  constructor(@Inject(KNEX_CONNECTION) private readonly knex: Knex) { }
+
+  async getHello(): Promise<any> {
+    // use knex
+    return await this.knex('article').select()
+  }
+}
+
+```
 
 ## Installation
 
