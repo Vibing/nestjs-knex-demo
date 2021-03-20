@@ -1,0 +1,12 @@
+{
+  "type": "mysql",
+  "host": "122.51.138.67",
+  "port": 3306,
+  "username": "blog-nest",
+  "password": "LKK4YNdWBjJPR3hS",
+  "database": "blog-nest",
+  "entities": [
+    "dist/**/*.entity{.ts,.js}"
+  ],
+  "synchronize": true
+}
